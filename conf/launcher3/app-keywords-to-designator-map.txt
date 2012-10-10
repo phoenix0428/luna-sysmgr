@@ -3,7 +3,8 @@
 2\designator=downloads
 3\designator=prefs
 3\name=settings
-size=3
+4\designator=video
+size=4
 
 [keywords]
 1\keyword=EXAMPLE_DUMMY
