@@ -26,6 +26,7 @@
 #include "WindowManagerBase.h"
 
 #include "CardWindowManager.h"
+#include "BoardWindowManager.h"
 #include "CardWindow.h"
 #include "DashboardWindowManager.h"
 #include "EmergencyWindowManager.h"
@@ -94,7 +95,8 @@ WindowServerLuna::WindowServerLuna()
 	m_qmlEngine->rootContext()->setContextProperty("runtime", Runtime::instance());
 
 	//the map is in the base class (WindowServerBase)
-	m_cardMgr = new CardWindowManager(m_screenWidth, m_screenHeight);
+//	m_cardMgr = new CardWindowManager(m_screenWidth, m_screenHeight);
+    m_cardMgr = new BoardWindowManager(m_screenWidth, m_screenHeight);
 	m_windowManagerMap.insert(QString(m_cardMgr->metaObject()->className()),m_cardMgr);
 
 	m_menuMgr = new MenuWindowManager(m_screenWidth, m_screenHeight);

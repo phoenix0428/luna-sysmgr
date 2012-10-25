@@ -216,6 +216,9 @@ SOURCES = \
 	ReticleItem.cpp \
 	TouchToShareGlow.cpp \
 	CardWindowManager.cpp \
+	BoardWindowManager.cpp \
+	ConciergeBoard.cpp \
+	SmartBoard.cpp \
 	OverlayWindowManager.cpp\
 	QuicklaunchLayout.cpp \
 	MemoryMonitor.cpp \
@@ -391,6 +394,9 @@ HEADERS = \
 	ReticleItem.h \
 	TouchToShareGlow.h \
 	CardWindowManager.h \
+	BoardWindowManager.h \
+	ConciergeBoard.h \
+	SmartBoard.h \
 	OverlayWindowManager.h \
 	OverlayWindowManager_p.h \
 	QuicklaunchLayout.h \

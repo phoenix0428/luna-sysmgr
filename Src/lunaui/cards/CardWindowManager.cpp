@@ -1355,7 +1355,7 @@ void CardWindowManager::handleTapAndHoldGestureMinimized(QTapAndHoldGesture* eve
 		switchToPrevGroup();
 	}
 	else {
-		switchToNextGroup();
+        switchToNextGroup();
 	}
 }
 
@@ -1442,6 +1442,7 @@ void CardWindowManager::handleMouseMoveMinimized(QGraphicsSceneMouseEvent* event
 {
 	if (m_groups.isEmpty() || !m_activeGroup)
 		return;
+    g_message("%s", __PRETTY_FUNCTION__);
 
 	QPoint delta = (event->pos() - event->buttonDownPos(Qt::LeftButton)).toPoint();
 	QPoint diff; // distance move between last and current mouse position
