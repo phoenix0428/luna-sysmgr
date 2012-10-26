@@ -24,3 +24,40 @@ BoardWindowManager::~BoardWindowManager()
 {
 }
 
+// virtual
+void BoardWindowManager::init()
+{
+    CardWindowManager::init();
+}
+
+// virtual
+void BoardWindowManager::mousePressEvent(QGraphicsSceneMouseEvent* event)
+{
+    CardWindowManager::mousePressEvent(event);
+}
+
+// virtual
+void BoardWindowManager::mouseDoubleClickEvent(QGraphicsSceneMouseEvent* event)
+{
+    CardWindowManager::mouseDoubleClickEvent(event);
+}
+
+// virtual
+void BoardWindowManager::mouseMoveEvent(QGraphicsSceneMouseEvent* event)
+{
+    CardWindowManager::mouseMoveEvent(event);
+    slideBoards();
+}
+
+// virtual
+void BoardWindowManager::mouseReleaseEvent(QGraphicsSceneMouseEvent* event)
+{
+    CardWindowManager::mouseReleaseEvent(event);
+}
+
+void BoardWindowManager::slideBoards()
+{
+    m_pConciergeBoard->setPos(m_activeGroupPivot - 600, -200);
+    m_pSmartBoard->setPos(m_activeGroupPivot + 300, -200);
+}
+

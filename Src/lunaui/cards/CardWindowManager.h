@@ -132,7 +132,7 @@ Q_SIGNALS:
 	void signalExitReorder(bool canceled = true);
     void signalFirstCardRun();
 
-private:
+protected:
 
 	void performPostModalWindowRemovedActions(Window* win, bool restore = true);
 	void initiateRemovalOfActiveModalWindow();
