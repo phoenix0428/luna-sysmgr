@@ -1,34 +1,35 @@
-#ifndef WIDGETITEM_H_
-#define WIDGETITEM_H_
+#ifndef WIDGETITEM_H
+#define WIDGETITEM_H
 
 #include <QGraphicsObject>
 
 class WidgetItem : public QGraphicsObject
 {
 	Q_OBJECT
-	Q_PROPERTY(bool focused READ focused WRITE setFocus)
+    Q_PROPERTY(bool selected READ selected WRITE setSelected)
 
 public:
-	WidgetItem(const QRectF &bounds, QGraphicsItem *parent=0);
-	virtual ~WidgetItem();
+    WidgetItem(const QRectF &bounds, QGraphicsItem *parent = 0);
+
+    bool selected() const;
+    void setSelected(bool select);
 
 	QRectF boundingRect() const;
 	void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0);
 
-	bool focused() const;
-	void setFocus(bool focus);
+    void setPixmap1(const QPixmap &pixmap);
+    void setPixmap2(const QPixmap &pixmap);
 
-	void setPixmap(const QPixmap &pixmap);
-
-	virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
-	virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
+protected:
+    virtual void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
+    virtual void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 
 private:
-	QPixmap *m_p_selection;
-	QPixmap *m_p_pix;
-	bool     m_focused;
-	QRectF   m_bounds;
+    QPixmap m_pixmap1;
+    QPixmap m_pixmap2;
+    QPixmap *m_selection;
+    bool    m_isSelected;
+    QRectF  m_bounds;
 };
 
-#endif /* WIDGETITEM_H_
-
+#endif // WIDGETITEM_H

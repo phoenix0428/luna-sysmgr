@@ -1,24 +1,13 @@
 #include "widgetitem.h"
 
-#include <QtGui/QtGui>
-
-#define WIDGETITEM_IMG_FOCUS  QString("/widget-focus.png");
+#include <QPainter>
 
 WidgetItem::WidgetItem(const QRectF &bounds, QGraphicsItem *parent)
-: QGraphicsObject(parent), m_bounds(bounds), m_focused(false)
+    : QGraphicsObject(parent)
+    , m_isSelected(false)
 {
-	m_p_selection =
-			new Pixmap(
-					QString(GraphicsSettings::settings()->graphicsAssetBaseDirectory + WIDGETITEM_IMG_FOCUS
-			);
-	setAcceptHoverEvents(true);
-}
-
-//virtual
-WidgetItem::~WidgetItem()
-{
-	delete m_p_selection; m_p_selection = null;
-	delete m_p_pix; m_p_pix = null;
+    m_selection = new QPixmap(QString("images/widget_focus.png"));
+    m_bounds = bounds;
 }
 
 
@@ -30,59 +19,59 @@ QRectF WidgetItem::boundingRect() const
 
 void WidgetItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-	Q_UNUSED(option);
-	Q_UNUSED(widget);
+    Q_UNUSED(option);
+    Q_UNUSED(widget);
 
-	if (m_focused)
-	{
-		painter->drawPixmap(-m_p_selection.width() / 2, -m_p_selection.height() / 2, m_p_selection);
-	}
-	else
-	{
-		painter->setPen(Qt::NoPen);
-		painter->setBrush(QColor(0, 0, 0, 64));
-		painter->drawRect(m_bounds.translated(2, 2));
-	}
-	
-	if (!m_p_pix.isNull())
-	{
-		painter->drawPixmap(-m_p_pix->width() / 2, -m_p_pix->height() / 2, *m_p_pix);
-	}
-}
+    if (m_isSelected)
+    {
+        painter->drawPixmap(-m_selection->width() / 2, -m_selection->height() / 2 - 5, *m_selection);
+    }
 
-
-bool WidgetItem::focused() const
-{
-	return m_focused;
-}
-
-void WidgetItem::setFocus(bool focus)
-{
-	if (focus != m_focused)
-	{
-		m_focused = focus;
-		update();
-	}
-}
-
-void WidgetItem::setPixmap(const QPixmap &pixmap)
-{
-	m_p_pixmap = &pixmap;
-	update();
+    if (!m_pixmap1.isNull())
+    {
+        painter->drawPixmap(-m_pixmap1.width() / 2, -m_pixmap1.height() / 2, m_pixmap1);
+    }
 }
 
 
 // virtual
 void WidgetItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-	setFocus(true);
+    setSelected(true);
 }
 
 
 // virtual
 void WidgetItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
-	setFocus(false);
+    setSelected(false);
 }
 
 
+bool WidgetItem::selected() const
+{
+    return m_isSelected;
+}
+
+
+void WidgetItem::setSelected(bool select)
+{
+    if (select != m_isSelected)
+    {
+        m_isSelected = select;
+        update();
+    }
+}
+
+
+void WidgetItem::setPixmap1(const QPixmap &pixmap)
+{
+    m_pixmap1 = pixmap;
+    update();
+}
+
+void WidgetItem::setPixmap2(const QPixmap &pixmap)
+{
+    m_pixmap2 = pixmap;
+    update();
+}
